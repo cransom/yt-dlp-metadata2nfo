@@ -1,14 +1,15 @@
 import os
+import sys
 import json
 from xml.etree import ElementTree as et
 import xml.dom.minidom as minidom
 from loguru import logger
-from .config import Config
 
 
 class MetadataFileHandler(object):
 
-    TargetPath: str = Config.get("TARGET_PATH")
+    TargetPath = sys.argv[1] if len(sys.argv) > 1 else "."
+
 
     @classmethod
     def _get_metadata_raw_file_list(cls, force_rewrite: bool = False,
